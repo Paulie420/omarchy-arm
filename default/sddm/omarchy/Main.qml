@@ -7,7 +7,11 @@ Rectangle {
   height: 480
   color: "#1a1b26"
 
-  property string currentUser: userModel.lastUser
+  // The greeter has no username field. lastUser is empty until someone has
+  // logged in through SDDM once, which on an install without the ISO's
+  // autologin is never, and sddm.login("") always fails. Fall back to the
+  // first account SDDM lists (NameRole is Qt.UserRole + 1).
+  property string currentUser: userModel.lastUser || userModel.data(userModel.index(0, 0), Qt.UserRole + 1) || ""
   property bool loginFailed: false
   property int sessionIndex: {
     for (var i = 0; i < sessionModel.rowCount(); i++) {
