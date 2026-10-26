@@ -14,6 +14,12 @@ case "$(omarchy-hw-platform)" in
     # V3DV, Mesa's Vulkan driver for VideoCore.
     omarchy_arm_pkg_add_available vulkan-broadcom
     ;;
+  pinebook-pro)
+    # The Mali-T860 is a Midgard GPU, which no Mesa Vulkan driver covers (PanVK
+    # starts at Bifrost). Hyprland renders through panfrost's GLES, so there is
+    # nothing to install -- and the generic branch below would add virtio-gpu
+    # drivers this machine cannot use.
+    ;;
   generic-aarch64)
     # A VM with no accelerated GPU: virtio-gpu with Venus, and the software
     # rasterizer as the fallback that keeps Hyprland able to start at all.

@@ -59,7 +59,8 @@ Options:
   --link             Point the target at this checkout with a symlink instead
                      of copying it, for working on the fork itself
   --profile NAME     Override hardware detection: apple-silicon,
-                     raspberry-pi-5, raspberry-pi or generic-aarch64
+                     raspberry-pi-5, raspberry-pi, pinebook-pro or
+                     generic-aarch64
   -h, --help         Show this message
 USAGE
 }
@@ -199,6 +200,9 @@ case "$platform" in
   raspberry-pi)
     ok "Platform: Raspberry Pi (pre-5)"
     warn "Only the Pi 5 is tested. Older Pis have no Vulkan-capable GPU for Hyprland."
+    ;;
+  pinebook-pro)
+    ok "Platform: Pine64 Pinebook Pro (RK3399)"
     ;;
   generic-aarch64)
     ok "Platform: generic aarch64 (virtual machine or unrecognised board)"
